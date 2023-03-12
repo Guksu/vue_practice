@@ -3,17 +3,22 @@
     <!-- 반복문 , js의 map과 유사 -->
     <a v-for="name in menu" :key="name">{{ name }}</a>
   </div>
+  <div @click="$router.push('/list')">리스트 이동</div>
+  <router-view></router-view>
   <div v-for="(item,i) in products" :key="i">
     <h4>{{ item }} 원룸</h4>
     <button v-on:click="btnClick">허위매물신고</button><span>신고수 : {{reportNum}}</span>
   </div>
     <div v-if="modal">true!!!</div>
     <div v-else>false!!!</div>
+    <Sample @closeModal="modal= false" :products="products"/>
+
 
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Sample from "./components/Sample.vue"
 
 export default defineComponent({
   name: 'App',
@@ -32,7 +37,8 @@ export default defineComponent({
       }
   },
   components: {
-  }
+    Sample: Sample,
+}
 });
 </script>
 
